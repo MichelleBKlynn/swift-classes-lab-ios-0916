@@ -15,18 +15,20 @@
 class Thermometer {
     var fahrenheit: Double
     var celsius: Double {
-        let answer = fahrenheit * 5/9 - 32
-        return answer
-        
+        get {
+            return (fahrenheit - 32) * (5.0 / 9.0)
+        }
+        set {
+            fahrenheit = newValue * (9.0 / 5.0) + 32
+        }
     }
-    var description: String
+    var description: String {
+        return "The current temperature is \(fahrenheit)°F (\(celsius)°C)"
+    }
     
     init(fahrenheit: Double) {
         self.fahrenheit = fahrenheit
-    }
-    func returnString() -> String {
-        let description = "The current temperature is \(fahrenheit)°F (\(celsius)°C)"
-        return description
+
     }
     
 }
@@ -57,7 +59,7 @@ assert(thermometer.celsius - 31.1 < 0.1, "thermometer.celsius is \(thermometer.c
  
  Perfect! Now, change the `fahrenheit` temperature of your `Thermometer` instance to 100.0.
  */
-Thermometer(fahrenheit: 100.0)
+thermometer.fahrenheit = 100.0
 
 assert(thermometer.fahrenheit == 100.0, "thermometer.fahrenheit is \(thermometer.fahrenheit)")
 assert(thermometer.celsius - 37.7 < 0.1, "thermometer.celsius is \(thermometer.celsius)")
@@ -74,7 +76,7 @@ assert(thermometer.celsius - 37.7 < 0.1, "thermometer.celsius is \(thermometer.c
  
  Now set the `celsius` temperature of your `Thermometer` instance to 100.0
  */
-Thermometer(fahrenheit: 100.0)
+thermometer.celsius = 100.0
 
 assert(thermometer.celsius == 100.0, "thermometer.celsius is \(thermometer.celsius)")
 assert(thermometer.fahrenheit == 212.0, "thermometer.fahrenheit is \(thermometer.fahrenheit)")
